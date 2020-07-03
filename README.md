@@ -1,24 +1,28 @@
-# README
+# TOROBA
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+　人に相談しにくい悩みや日頃の愚痴などを吐露するための場を提供します。
+　通常のチャットサイト感覚で吐露したい概要などを書き込み、他のユーザーの反応次第でzoomを利用して実際に口にして人に聞いてもらいましょう。きっとスッキリして明日を迎えられるでしょう。
 
-Things you may want to cover:
+### サイトテーマ
+　【非カウンセリング。非アドバイス。一方向コミュニケーション。】をテーマにしたSNSサイト。
+　話をしたい内容や日時の他、相手にどれだけリアクションをして欲しい、して欲しくないなどを伝え、マッチングした相手とzoomを利用した会話へ繋げます。
+　解決を目的とせず、ストレスとなっている自分の内面を人に話すことで自分を見つめなおせたり、何かに気が付くこと、気分向上を目的とします。
 
-* Ruby version
+### テーマを選んだ理由
+　大学時代にカウンセリングを学んできたが、日本におけるカウンセリングを受けるという行為そのもののハードルの高さに疑問を覚えました。
+　そして本格的なカウンセリングでなくとも話を誰かに聞いてもらうだけでも気持ちが楽になるということに着目し、誰もが気軽に胸の内を話せるようなアプリがあっていいと思いテーマとしました。
 
-* System dependencies
+### ターゲットユーザ
+　16歳以上の悩みや愚痴など話をした人（zoomの利用規約の関係上16歳未満がアカウント作成ができないため）
+　話を聞きたい人。漠然と色んな人と関わりたい、人の考えを知りたい、創作のアイデアが欲しいなど。
 
-* Configuration
+### 主な利用シーン
+　悩みがあるが話せる友人などがいない人がストレスを軽減したい時。
+　整理のできていない感情などを言葉にしていくことで整理したい時。
 
-* Database creation
+## 設計書
+https://docs.google.com/spreadsheets/d/1JOauEFhJEd_cnc41CNrADdAICOnIGndMWl6SmGT7mvY/edit#gid=1109403560
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1kguoHCFBu_QRmQS3glDPv8UeVcZVvca1qeB0FPz2-Ag/edit#gid=0
