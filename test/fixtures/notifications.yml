@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tweet: one
+  following: one
+  follower: one
+  comment: one
+  action: MyString
+  checked: false
+
+two:
+  tweet: two
+  following: two
+  follower: two
+  comment: two
+  action: MyString
+  checked: false

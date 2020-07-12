@@ -1,0 +1,13 @@
+<div class=“row login-row”>
+	<div class="col-xs-offset-5" style="margin-top: 20vh; margin-bottom: 20vh;">
+			<h3>本当に退会しますか？</h3>
+
+			<div class = "withdrawal_text">退会すると、他のユーザーのつぶやきが見れなくなる他
+				<br>今までのいいね、コメント、DMなどが閲覧できなくなります。
+				<br>それでも退会する場合は、「退会する」をクリックしてください。
+			</div>
+
+			<%= link_to "退会しない", edit_user_path(@user), class: "btn btn-primary"%>&ensp;
+			<%= link_to "退会する", user_path(@user), method: :delete, data: {confirm: "本当に退会してもよろしいですか？"}, class: "btn btn-danger" %>
+	</div>
+</div>

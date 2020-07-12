@@ -1,0 +1,13 @@
+<%= form_for(@tweet) do |f| %>
+
+	<div class="field">
+		<%= f.label :投稿内容 %><br />
+		<%= f.text_area :tweet %>
+	</div>
+
+	<%= f.select :listener, ["無言、聞き専", "うなづき、あいづち", "対話、会話", "アドバイス、意見が欲しい", "その他"], {include_blank: '選択ボックス'}, class: '' %>
+
+	<%= f.select :genre, ["悩み（軽）", "悩み（重い", "愚痴", "整理するために話をしたい", "その他"], {include_blank: '選択ボックス'}, class: '' %>
+
+	<%= f.submit "編集を保存する", class: "btn btn-primary" %>
+<% end %>
