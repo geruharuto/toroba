@@ -1,10 +1,13 @@
 class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
+    @tweet = Tweet.find(params[:id])
   end
 
   def show
     @tweet = Tweet.find(params[:id])
+    @comment = Comment.new
+    @comments = @tweet.comments
   end
 
   def new
@@ -13,13 +16,14 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.new(tweet_params)
+    @tweet.user_id = current_user.id
     @tweet.save!
       flash[:success] = "投稿しました"
-      redirect_to tweets_path#(params[:id])
-    #else
-     # flash[:danger] = '投稿に失敗しました'
-      #render :new
-    #end
+      redirect_to tweet_path(@tweet) and return
+    else
+      flash[:danger] = '投稿に失敗しました'
+      render :new and return
+    end
   end
 
   def edit
@@ -57,7 +61,5 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:tweet, :listener, :genre)
+    params.require(:tweet).permit(:tweet, :listener, :genre, :user_id)
   end
-
-end

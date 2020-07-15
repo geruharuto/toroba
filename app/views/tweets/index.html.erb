@@ -5,6 +5,7 @@
 				<%= attachment_image_tag(tweet.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png") %>
 			<% end %>
 		</td>
+		<td><%= link_to tweet.user.name, user_path(@tweet.user_id) %></td>
 		<td><<%= link_to tweet.tweet, tweet_path(tweet) %></td>
 		<td>
 			<% if tweet.favorited_by?(current_user) %>
@@ -13,11 +14,11 @@
 					<%= tweet.favorites.count %>
 				<% end %>
 			<% else %>
-				<%#= link_to tweet_favorites_path(tweet), method: :post do %>
+				<%= link_to tweet_favorites_path(tweet), method: :post do %>
 					<i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
 					<%= tweet.favorites.count %>
-				<%# end %>
-			<% end %> 
+				<% end %>
+			<% end %>
 		</td>
 		<td><%= "#{tweet.comments.count} コメント" %></td>
 	</tr>

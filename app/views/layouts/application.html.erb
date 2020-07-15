@@ -17,8 +17,8 @@
               <%= attachment_image_tag(current_user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png") %>
               <%= link_to current_user.name, user_path(current_user) %>
             </li>
-            <li><%#= link_to current_user.followings.count, follows_user_path(current_user) %></li>
-            <li><%#= link_to current_user.followers.count, followers_user_path(current_user) %></li>
+            <li><%= link_to current_user.followings.count, follows_user_path(current_user) %></li>
+            <li><%= link_to current_user.followers.count, followers_user_path(current_user) %></li>
             <li><%= link_to "活動履歴", activity_path(current_user) %></li>
             <li><%= link_to "つぶやく", new_tweet_path %></li>
             <li><%= link_to "通知一覧", notifications_path %></li>

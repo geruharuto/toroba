@@ -67,3 +67,7 @@ gem 'pry-byebug'
 gem 'rubocop-airbnb'
 gem 'paranoia'
 gem 'devise'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end

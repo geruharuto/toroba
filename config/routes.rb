@@ -13,6 +13,8 @@ Rails.application.routes.draw do
    resources :tweets do
     resources :comments, only: [:create, :destroy] do
       resource :favorites, only: [:create, :destroy]
+      post "favorites/comment_favorites" => "favorites#comment_create"
+      delete "favorites/comment_destroy" => "favorites#comment_destroy"
     end
   end
 
