@@ -3,7 +3,12 @@ class FavoritesController < ApplicationController
 	@tweet = Tweet.find(params[:tweet_id])
     @favorite = @tweet.favorites.new(user_id: current_user.id)
     @favorite.save
-    redirect_to request.referer
+    #redirect_to request.referer
+  @notification.create_notification_by(current_user)
+    respond_to do |format|
+      format.html {redirect_to request.referrer}
+      format.js
+    end
   end
 
   def destroy

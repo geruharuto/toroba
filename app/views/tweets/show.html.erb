@@ -1,35 +1,51 @@
-<%= link_to(@tweet.user) do %>
-	<%= attachment_image_tag(@tweet.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png") %>
-	<%= link_to @tweet.user.name, user_path(params[:id]) %>
-<% end %>
-<%= @tweet.tweet %>
-<%= @tweet.listener %>
-<%= @tweet.genre %>
-<%# if @tweet.favorited_by?(current_user) %>
-	<%#= link_to tweet_comment_favorites_path(current_user), method: :delete do %>
-		
-		<%#= tweet.favorites.count %>
-	<%# end %>
-<%# else %>
-	<%#= link_to tweet_comment_favorites_path(current_user), method: :post do %>
-		
-		<%#= tweet.favorites.count %>
-	<%# end %>
-<%# end %>
-<%#= "#{tweet.comments.count} コメント" %>
+<div class = "body" style>
+	<div class = "container">
+		<div class="row" style>
+			<div class="col-xs-3">
+				<%= render 'users/side_header'%>
+			</div>
+		<div class="col-xs-9" style>
+			<table class="table">
+				<%= link_to @tweet.user, user_path(@user) do %>
+					<%= attachment_image_tag(@tweet.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png",size:"50x50") %>
+					<%#= link_to @tweet.user.name, user_path(params[:id]) %>
+				<% end %>
+				<%= @tweet.tweet %>
+				<%= @tweet.listener %>
+				<%= @tweet.genre %>
+				<%# if @tweet.favorited_by?(current_user) %>
+					<%#= link_to tweet_comment_favorites_path(current_user), method: :delete do %>
+						
+						<%#= tweet.favorites.count %>
+					<%# end %>
+				<%# else %>
+					<%#= link_to tweet_comment_favorites_path(current_user), method: :post do %>
+						
+						<%#= tweet.favorites.count %>
+					<%# end %>
+				<%# end %>
+				<%#= "#{tweet.comments.count} コメント" %>
 
-<% if current_user.id == @tweet.user_id %>
-	<td><%= link_to "内容を編集する",edit_tweet_path(@tweet) %></td>
-<% end %>
+				<% if current_user.id == @tweet.user_id %>
+					<td><%= link_to "内容を編集する",edit_tweet_path(@tweet) %></td>
+				<% end %>
+			</table>
+			<tr>
+				<% @tweet.comments.each do |comment| %>
+					<%= attachment_image_tag(comment.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png", size:"50x50") %>
+					<td><%= comment.user.name %></td>
+					<td><%= comment.comment %></td><!-- コメントマークをつける -->
+					<td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+					<% if current_user.id == comment.user_id %>
+						<td><%= link_to "コメントを削除する", tweet_comment_path(tweet_id: comment.tweet_id, id: comment.id), method: :delete %></td><br>
+					<% end %>
+				<% end %>
+			</tr>
 
-<% @comments.each do |comment| %>
-	<%= attachment_image_tag(comment.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png") %>
-	<td><%= comment.comment %></td>
-	<% if current_user.id == comment.user_id %>
-		<td><%= link_to "コメントを削除する", tweet_comments_path(tweet_id: comment.tweet_id, id: comment.id), method: :delete %></td>
-	<% end %>
-<% end %>
-
-<%= form_for [@tweet, @comment] do |f| %>
-	<%= f.submit "送信する" %>
-<% end %>
+				<%= form_for [@tweet, @comment] do |f| %>
+					<%= f.text_area :comment, placeholder: "コメントをここに" %>
+					<%= f.submit "送信する" %>
+				<% end %>
+		</div>
+	</div>
+</div>

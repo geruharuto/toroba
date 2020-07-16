@@ -12,6 +12,7 @@ Rails.application.routes.draw do
    post "tweets/new" => "tweets#new"
    resources :tweets do
     resources :comments, only: [:create, :destroy] do
+      post "comment/create" => "comment#create"
       resource :favorites, only: [:create, :destroy]
       post "favorites/comment_favorites" => "favorites#comment_create"
       delete "favorites/comment_destroy" => "favorites#comment_destroy"
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
 
    resources :directmessages, only: [:create, :destroy]
    resources :rooms, only: [:create, :show]
-   resources :notifications, only: [:index]
+   resources :notifications, only: [:index] do
+    delete "destroy_all"
+  end
    resources :activitys, only: [:show]
 end

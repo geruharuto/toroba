@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :tweets, dependent: :destroy
+  has_many :active_notifications, class_name: "Notification", foreign_key: "active_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "passive_id", dependent: :destroy
+
 
  #フォローする側から見てフォローされる側のUser
   has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
@@ -26,6 +29,17 @@ class User < ApplicationRecord
 
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
+  end
+ #current_userが誰かにフォローされた時に通知
+  def create_notification_follow!(currentuser)
+    temp = Notification.wher(["active_id = ? and passive_id = ? and action = ?" ,current_user.id, "follow"])
+    if temp.blank?
+      notification = current_user.acitive_notifications.new(
+        active_id: id,
+        action: "follow"
+        )
+      notification.save if notification.valid?
+    end
   end
 
   validates :name, length: {maximum: 20, minimum: 2}

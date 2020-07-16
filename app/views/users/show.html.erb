@@ -17,9 +17,9 @@
 	<% @mytweet.each do |tweet| %>
 	<tr>
 		<td>
-			<%= user.name %>
+			<%= @user.name %>
 			<%= attachment_image_tag(tweet.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png") %>
-			<%= link_to user.tweet, tweet_path(tweet.id) %>
+			<%= link_to tweet.tweet, tweet_path(tweet.id) %>
 			<% end %>
 		</td>
 	</tr>

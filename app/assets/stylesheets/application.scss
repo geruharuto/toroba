@@ -1,0 +1,108 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets"; 
+ @import "bootstrap";     
+
+ /* 全体 */
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   color:#666;
+   font-family: "ヒラギノ丸ゴ Pro W4","Nunito","Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", sans-serif;
+ }
+ .clearfix::after {
+   content: "";
+   display: block;
+   clear: both;
+ }
+ .main-container {
+   margin-top: 100px;
+   padding-top: 30px;
+ }
+ footer{
+   margin-top: 50px;
+ }
+// ログイン中
+.login-row{
+  margin-top: 50px;
+}
+/* ヘッダー */
+ header{
+  height: 70px;
+   background-color: rgb(245, 245, 159);
+ }
+ li, i{
+  list-style: none;
+}
+ .header-logo{
+   font-weight: bold;
+   font-size:40px;
+   margin: auto 0;
+   color:#B72025;
+   float: left;
+   line-height: 40px;
+   &:hover{
+    color:#B72025;
+    text-decoration:none;
+  }
+ }
+ .rogin-heaader-logo{
+ 	padding-right: 100px;
+ 	 position:absolute;
+    top: 10px;
+    left:10px;
+
+ }
+
+ .nav-item{
+   height: 50px;
+   float: right;
+   padding: 15px 10px 0 10px;
+   color:#B72025;
+   font-size:15px;
+   list-style: none;
+   &:hover{
+    color:#B72025;
+  }
+ }
+ .glyphicon-cutlery,.glyphicon-edit,.glyphicon-log-in,.glyphicon-home,.glyphicon-user,.glyphicon-book,.glyphicon-log-out{
+  color:#B72025;
+ }
+
+ //aboutページ
+ .about-text{
+   padding: 30px 0px 30px 300px;
+ }
+
+
+ //マイページ編集画面
+.withdrawal_page_btn{
+  position: relative;
+  bottom: 33px;
+  left: 200px;
+}
+
+//退会ページ
+.withdrawal_text{
+  text-align:center;
+  margin: 30px;
+  position: relative;
+  right: 220px;
+}
+body {
+	margin-top: 40px;
+}

@@ -67,6 +67,8 @@ gem 'pry-byebug'
 gem 'rubocop-airbnb'
 gem 'paranoia'
 gem 'devise'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

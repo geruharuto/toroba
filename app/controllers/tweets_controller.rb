@@ -1,13 +1,14 @@
 class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
-    @tweet = Tweet.find(params[:id])
+    #@tweet = Tweet.find(params[:id])
   end
 
   def show
     @tweet = Tweet.find(params[:id])
     @comment = Comment.new
     @comments = @tweet.comments
+    @user = User.find_by(id: @tweet.user_id)
   end
 
   def new

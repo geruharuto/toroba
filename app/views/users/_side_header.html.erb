@@ -1,0 +1,52 @@
+<header class= "navbar navbar-fixed-top">
+      <div class="container">
+            <div class= "header">
+              <div class= "nav-bars">
+                <nav class="nav navbar-brand navbar-left header-logo">   
+
+                </nav>
+                <nav class="nav navbar-nav">
+                  <span class="adjust"> 
+                  </span>
+                </nav>
+                <nav>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><%= link_to "Toroba!!", tweets_path, class:"nav rogin-heaader-logo header-logo " %>
+                     </li>
+                      <li> <%= link_to user_path(current_user), class:"nav-item" do %>
+                           <%= attachment_image_tag(current_user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png", size:'50x50' ) %>
+                            <%= current_user.name %>
+                            <% end %>
+                      </li>
+                      <li><%= link_to follows_user_path(current_user), class:"nav-item" do %>
+                          <i class="glyphicon glyphicon-home home"></i>&emsp;
+                          <%= current_user.followings.count %>
+                          <% end %>
+                      </li>
+                      <li><%= link_to followers_user_path(current_user), class:"nav-item" do %>
+                          <i class="glyphicon glyphicon-home home"></i>&emsp;
+                          <%= current_user.followers.count %>
+                          <% end %>
+                      </li>
+                      <li><%= link_to activity_path(current_user), class:"nav-item" do %>
+                          <i class="glyphicon glyphicon-home home"></i>&emsp;"活動履歴"
+                          <% end %>
+                      </li>
+                      <li><%= link_to new_tweet_path, class:"nav-item" do %>
+                          <i class="glyphicon glyphicon-home home"></i>&emsp;"つぶやく"
+                          <% end %>
+                      </li>
+                      <li><%= link_to notifications_path, class:"nav-item" do %>
+                          <i class="glyphicon glyphicon-home home"></i>&emsp;"通知一覧"
+                          <% end %>
+                      </li>
+                      <li><%= link_to destroy_user_session_path, method: :delete, class:"nav-item" do %>
+                          <i class="glyphicon glyphicon-home home"></i>&emsp;"ログアウト"
+                          <% end %>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </header>
