@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 	comment.tweet_id = tweet.id #同じ変数を使い、足りない情報を追加している
 		if comment.save
 	 	  # commen.create_notification_comment(current_user, @comment.id)
-	 	   redirect_to tweet_path(@tweet.id)
+	 	   redirect_to request.referer
 	 	else
            @tweet
            render :show

@@ -1,20 +1,20 @@
 class FavoritesController < ApplicationController
   def create
-	@tweet = Tweet.find(params[:tweet_id])
-    @favorite = @tweet.favorites.new(user_id: current_user.id)
-    @favorite.save
-    #redirect_to request.referer
-  @notification.create_notification_by(current_user)
-    respond_to do |format|
-      format.html {redirect_to request.referrer}
-      format.js
-    end
+	tweet = Tweet.find(params[:tweet_id])
+  favorite = current_user.favorites.new(tweet_id: tweet.id)
+  favorite.save
+  redirect_to request.referer
+  #@notification.create_notification_by(current_user)
+   # respond_to do |format|
+    #  format.html {redirect_to request.referrer}
+     # format.js
+    #end
   end
 
   def destroy
-    @tweet = Tweet.find(params[:book_id])
-    @favorite = @tweet.favorites.find_by(user_id: current_user.id)
-    @favorite.destroy
+    tweet = Tweet.find(params[:tweet_id])
+    favorite = current_user.favorites.find_by(tweet_id: tweet.id)
+    favorite.destroy
     redirect_to request.referer
   end
 

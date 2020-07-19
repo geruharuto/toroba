@@ -45,22 +45,20 @@ class UsersController < ApplicationController
 
   def destroy
     user = current_user
-    client.destroy
-    flash[:success] = "編集を保存しました"
-    redirect_to home_about_path
+    user.destroy
+    flash[:success] = "ありがとうございました"
+    redirect_to root_path
   end
 
   def about ;
   end
 
   def follows
-    @user = User.find(params[:id])
-    @users = @user.followings
+    @users = current_user.followings
   end
 
   def followers
-    @user = User.find(params[:id])
-    @users = @user.followers
+    @user = current_user.followers
   end
 
   private

@@ -13,54 +13,54 @@
 ActiveRecord::Schema.define(version: 2020_07_10_053152) do
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "tweet_id"
     t.text "comment", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "tweet_id"
     t.index ["tweet_id"], name: "index_comments_on_tweet_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "directmessages", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "room_id"
     t.text "directmessage", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "room_id"
     t.index ["room_id"], name: "index_directmessages_on_room_id"
     t.index ["user_id"], name: "index_directmessages_on_user_id"
   end
 
   create_table "entries", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "room_id"
     t.index ["room_id"], name: "index_entries_on_room_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "tweet_id"
-    t.bigint "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "comment_id"
+    t.integer "tweet_id"
     t.index ["comment_id"], name: "index_favorites_on_comment_id"
     t.index ["tweet_id"], name: "index_favorites_on_tweet_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "tweet_id"
     t.bigint "active_id"
     t.bigint "passive_id"
-    t.bigint "comment_id"
     t.string "action"
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "comment_id"
+    t.integer "tweet_id"
     t.index ["active_id"], name: "index_notifications_on_active_id"
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["passive_id"], name: "index_notifications_on_passive_id"
@@ -83,12 +83,12 @@ ActiveRecord::Schema.define(version: 2020_07_10_053152) do
   end
 
   create_table "tweets", force: :cascade do |t|
-    t.bigint "user_id"
     t.text "tweet", null: false
     t.integer "listener", default: 0, null: false
     t.integer "genre", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 

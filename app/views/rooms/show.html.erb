@@ -1,2 +1,36 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<div class = "body" style>
+	<div class = "container">
+		<div class="row" style>
+			<div class="col-xs-3">
+				<%= render 'users/side_header'%>
+			</div>
+			<div class="col-xs-9" style>
+			<table class="table">
+				<% @directmessages.each do |directmassage| %>
+					<tr>
+						<td style>
+							<% if @directmessages.present? %>
+								<%= attachment_image_tag(@directmessage.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png", size:"50x50") %>
+								<%#= @directmessage.user_id.name %>
+						</td>
+							<td style><%= @directmessage.directmessage %></td>
+							<td style><%#= @directmessage.created_at.strftime('%Y/%m/%d') %></td>
+							<% if current_user.id == @directmessage.user_id %>
+								<td style><%= link_to "削除", directmessage_path(@directmessage), method: :delete %></td><br>
+							<% end %>
+						<% else %>
+							<h3 class="text-center">メッセージはまだありません</h3>
+						<% end %>
+					</tr>
+				<% end %>
+			</table>
+
+				<%= form_for @directmessage do |f| %>
+					<%= f.text_area :directmessage, placeholder: "コメントをここに" %>
+					<%= f.hidden_field :room_id, :value => @room.id %>
+					<%= f.submit "送信する" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>	

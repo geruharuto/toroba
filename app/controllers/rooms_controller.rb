@@ -2,9 +2,10 @@ class RoomsController < ApplicationController
   def show
   	@room = Room.find(params[:id])
   	if Entry.where(:user_id => current_user.id, :room_id => @room.id).present?
-  		@directmessage = @room.directmessages
-  		@directmessages = Directmessages.new
+  		@directmessages = @room.directmessages
+  		@directmessage = Directmessage.new
   		@entries = @room.entries
+    end
   end
 
   def create

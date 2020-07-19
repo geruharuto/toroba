@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
+
   def index
+
     @tweets = Tweet.all
     #@tweet = Tweet.find(params[:id])
   end
@@ -18,7 +20,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
-    @tweet.save!
+    if @tweet.save
       flash[:success] = "投稿しました"
       redirect_to tweet_path(@tweet) and return
     else
@@ -48,19 +50,19 @@ class TweetsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-  def follows_tweet
-    @user = User.find(params[:id])
-    @users = @user.followings
-    @follows_tweet = @users.tweets
+  def followings_tweet
+    @users = current_user.followings
+    @tweets = Tweet.find_by(user_id: @users)
   end
 
   def followers_tweet
-    @user = User.find(params[:id])
-    @users = @user.followers
-    @followers_tweet = @users.tweets
+    @users = current_user.follower
+    @tweets = Tweet.find_by(user_id: @users)
   end
 
   private
+
   def tweet_params
     params.require(:tweet).permit(:tweet, :listener, :genre, :user_id)
   end
+end

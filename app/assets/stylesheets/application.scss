@@ -23,6 +23,7 @@
    box-sizing: border-box;
    color:#666;
    font-family: "ヒラギノ丸ゴ Pro W4","Nunito","Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", sans-serif;
+   text-size: 20px;
  }
  .clearfix::after {
    content: "";
@@ -43,7 +44,7 @@
 /* ヘッダー */
  header{
   height: 70px;
-   background-color: rgb(245, 245, 159);
+   background-color: #99FFCC;
  }
  li, i{
   list-style: none;
@@ -71,8 +72,8 @@
  .nav-item{
    height: 50px;
    float: right;
-   padding: 15px 10px 0 10px;
-   color:#B72025;
+   padding: 30px 10px 0 10px;
+   color:#FFFF00;
    font-size:15px;
    list-style: none;
    &:hover{
@@ -80,7 +81,8 @@
   }
  }
  .glyphicon-cutlery,.glyphicon-edit,.glyphicon-log-in,.glyphicon-home,.glyphicon-user,.glyphicon-book,.glyphicon-log-out{
-  color:#B72025;
+  color:#FFFF00;
+
  }
 
  //aboutページ
@@ -96,6 +98,10 @@
   left: 200px;
 }
 
+.user_show_tweets{
+  
+}
+
 //退会ページ
 .withdrawal_text{
   text-align:center;
@@ -105,4 +111,9 @@
 }
 body {
 	margin-top: 40px;
+}
+
+//tweet
+.tweet_index{
+ color: red;
 }

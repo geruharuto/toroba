@@ -29,12 +29,12 @@
                             <%= current_user.name %>
                             <% end %>
                       </li>
-                      <li><%= link_to follows_user_path(current_user), class:"nav-item" do %>
+                      <li><%= link_to  followings_tweet_tweets_path, class:"nav-item" do %>
                           <i class="glyphicon glyphicon-home home"></i>&emsp;
                           <%= current_user.followings.count %>
                           <% end %>
                       </li>
-                      <li><%= link_to followers_user_path(current_user), class:"nav-item" do %>
+                      <li><%= link_to followers_tweet_tweets_path, class:"nav-item" do %>
                           <i class="glyphicon glyphicon-home home"></i>&emsp;
                           <%= current_user.followers.count %>
                           <% end %>
