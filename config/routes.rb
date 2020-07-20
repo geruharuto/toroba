@@ -7,14 +7,13 @@ Rails.application.routes.draw do
     resource :relationships,only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member
+    get "followings_tweet" => "tweets#followings_tweet"
+    get "followers_tweet" => "tweets#followiner_tweet"
   end
 
+  
+   post "new" => "tweets#new"
    resources :tweets do
-    collection do
-      get "followings_tweet"
-      get "followers_tweet"
-      post "new"
-    end
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy] do
       post "favorites/comment_favorites" => "favorites#comment_create"

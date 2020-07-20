@@ -5,19 +5,17 @@ class UsersController < ApplicationController
     @mytweet = @user.tweets
     #dmルーム作成
     @current_user_entry = Entry.where(user_id: current_user.id)
-    @opponent_user_entry = Entry.where(user_id: @user.id)
-    if @user.id == current_user.id
-    else
+    @user_entry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
       @current_user_entry.each do |cu|
-        @opponent_user_entry.each do |ou|
+        @user_entry.each do |ou|
           if cu.room_id == ou.room_id then
             @isroom = true
             @roomid = cu.room_id
           end
         end
       end
-      if @isroom
-      else
+      unless @isroom
         @room = Room.new
         @entry = Entry.new
       end
@@ -58,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @user = current_user.followers
+    @users = current_user.followers
   end
 
   private

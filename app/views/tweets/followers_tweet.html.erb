@@ -1,2 +1,41 @@
-<h1>Tweets#followers_tweet</h1>
-<p>Find me in app/views/tweets/followers_tweet.html.erb</p>
+<div class = "body" style>
+	<div class = "container">
+		<div class="row" style>
+			<div class="col-xs-3">
+				<%#= render 'users/side_header' %>
+			</div>
+			<div class="col-xs-9" style>
+				<%= link_to "フォロワー 一覧", followers_user_path(@users), class: "btn btn-primary" %>
+				<table class="table">
+					<% @users.each do |user| %>
+					   <div class="contents row" >
+						<tr>
+							<td style>
+								<%= link_to(user) do %>
+									<%= attachment_image_tag(user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png", size:'50x50') %>
+									<%= user.name %>
+								<% end %>
+							</td>
+							<td style><%= @tweets.tweet %></td>
+							<td style>
+								<% if @tweets.favorited_by?(current_user) %>
+									<%= link_to tweet_favorites_path(@tweets), method: :delete do %>
+										<i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
+										<%= @tweets.favorites.count %>
+									<% end %>
+								<% else %>
+									<%= link_to tweet_favorites_path(@tweets), method: :post do %>
+										<i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
+										<%= @tweets.favorites.count %>
+									<% end %>
+								<% end %>
+							</td>
+							<td><%= "#{@tweets.comments.count} コメント" %></td>
+						</tr>
+						</div>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

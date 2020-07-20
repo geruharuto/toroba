@@ -11,11 +11,9 @@ class DirectmessagesController < ApplicationController
   end
 
   def destroy
-  	@directmessage = directmessage.find(params[:id])
-   	if @directmessage.user_id == current_user.id
-    	@directmessage.destroy
-    	redirect_to request.referer
-    end
+  	@directmessage = directmessage.find(params[:directmessage_id])
+    @directmessage.destroy
+    redirect_to request.referer
   end
 
   private

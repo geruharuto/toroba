@@ -20,14 +20,14 @@ class FavoritesController < ApplicationController
 
   def comment_create
   	@comment = Comment.find(params[:tweet_id])
-	@favorite = @comment.favorites.new(user_id: current_user.id) 
+	  @favorite = @comment.favorites.new(user_id: current_user.id)
     @favorite.save
     redirect_to request.referer
   end
 
   def comment_destroy
   	@comment = Comment.find(params[:tweet_id])
-	@favorite = @comment.favorites.new(user_id: current_user.id) 
+	  @favorite = @comment.favorites.new(user_id: current_user.id)
     @favorite.save
     redirect_to request.referer
   end

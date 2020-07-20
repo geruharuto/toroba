@@ -2,7 +2,7 @@
   <div class = "container">
     <div class="row" style>
       <div class="col-xs-3">
-        <%= render 'users/side_header' %>
+        <%#= render 'users/side_header' %>
       </div>
     <div class="col-xs-9" style>
         <div class = "introduction">
@@ -16,23 +16,22 @@
         	<%= link_to "プロフィール編集", edit_user_path(current_user) %>
         <% else %>
         	 <% if @user.followers.include?(current_user) %>
-              <p><%= link_to 'フォローを外す', user_relationships_path(current_user.id, follower_id: @user.id), method: :delete %></p>
+              <p><%= link_to 'フォローを外す', user_relationships_path(current_user.id, follower_id: @user.id), method: :delete, class: "btn btn-danger" %></p>
            <% else %>
-              <p><%= link_to 'フォローする', user_relationships_path(current_user.id, follower_id: @user.id), method: :post %></p>
+              <p><%= link_to 'フォローする', user_relationships_path(current_user.id, follower_id: @user.id), method: :post, class: "btn btn-primary" %></p>
            <% end %>
         <% end %>
 
          <!-- DMルームへの記述　-->
-        <% if @user.id == current_user.id %>
-        <% else %>
+        <% unless @user.id == current_user.id %>
           <% if @isroom == true %>
-            <%= link_to "DMルーム", room_path(@roomid) %>
+            <%= link_to "DMルームへ", room_path(@roomid), class: "btn btn-primary" %>
           <% else %>
             <%= form_for @room do |f| %>
-              <%= fields_for @entry do |e| %>
-                <%= e.hidden_field :user_id, :value=> @user.id %>
+              <%= fields_for @entry do |entry| %>
+                <%= entry.hidden_field :user_id, :value=> @user.id %>
               <% end %>
-              <%= f.submit "チャットを始める" %>
+              <%= f.submit "DMルームへ", class: "btn btn-primary" %>
             <% end %>
           <% end %>
         <% end %> 

@@ -2,7 +2,7 @@
 	<div class = "container">
 		<div class="row" style>
 			<div class="col-xs-3">
-				<%= render 'users/side_header'%>
+				<%#= render 'users/side_header'%>
 			</div>
 		<div class="col-xs-9" style>
 			<table class="table">
@@ -27,7 +27,7 @@
 					<% end %>
 				</td>
 				<% if current_user.id == @tweet.user_id %>
-					<td><%= link_to "内容を編集するhoge",edit_tweet_path(@tweet) %></td>
+					<td><%= link_to "内容を編集する",edit_tweet_path(@tweet) %></td>
 				<% end %>
 			</table>
 			<table class="table">

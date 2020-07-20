@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-
+   before_action :authenticate_user!
   def index
 
     @tweets = Tweet.all
@@ -56,7 +56,7 @@ class TweetsController < ApplicationController
   end
 
   def followers_tweet
-    @users = current_user.follower
+    @users = current_user.followers
     @tweets = Tweet.find_by(user_id: @users)
   end
 

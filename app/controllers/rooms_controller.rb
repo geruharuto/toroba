@@ -1,10 +1,14 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
+
   def show
   	@room = Room.find(params[:id])
   	if Entry.where(:user_id => current_user.id, :room_id => @room.id).present?
   		@directmessages = @room.directmessages
   		@directmessage = Directmessage.new
   		@entries = @room.entries
+    else
+      redirect_back
     end
   end
 
