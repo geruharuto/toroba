@@ -1,9 +1,7 @@
 class TweetsController < ApplicationController
    before_action :authenticate_user!
   def index
-
     @tweets = Tweet.all
-    #@tweet = Tweet.find(params[:id])
   end
 
   def show
@@ -51,13 +49,11 @@ class TweetsController < ApplicationController
   end
 
   def followings_tweet
-    @users = current_user.followings
-    @tweets = Tweet.find_by(user_id: @users)
+    @tweets = Tweet.where(user_id: current_user.followings)
   end
 
   def followers_tweet
-    @users = current_user.followers
-    @tweets = Tweet.find_by(user_id: @users)
+    @tweets = Tweet.where(user_id: current_user.followers)
   end
 
   private

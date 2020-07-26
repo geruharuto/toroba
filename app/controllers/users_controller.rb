@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user! #ログイン済ユーザーのみ許可
   def show
     @user = User.find(params[:id])
-    @mytweet = @user.tweets
+    @tweet = @user.tweets
     #dmルーム作成
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def about ;
+  def about
   end
 
   def follows

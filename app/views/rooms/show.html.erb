@@ -1,45 +1,47 @@
-<div class = "body" style>
-	<div class = "container">
-		<div class="row" style>
-			<div class="col-xs-3">
-				<%#= render 'users/side_header'%>
-			</div>
-			<div class="col-xs-9" style>
-			<table class="table">
-				<% if @directmessages.present? %>
-					<% @directmessages.each do |directmessage| %>
-						<% if directmessage.user_id == current_user.id %>
-							<tr>
-								<td style><%= directmessage.directmessage %></td><br>
-								<td style><%= directmessage.created_at.strftime('%Y/%m/%d') %></td>
-								<td style><%= link_to "削除", directmessage_path, method: :delete, class: "btn btn-danger" %></td><br>
-								<td style>
-									<%= attachment_image_tag(directmessage.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png", size:"50x50") %>
-									<%= directmessage.user.name %>
-								</td>
-							</tr>
-						<% else %>
-							<tr>
-								<td style>
-									<%= attachment_image_tag(directmessage.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png", size:"50x50") %>
-									<%= directmessage.user.name %>
-								</td>
-								<td style><%= directmessage.directmessage %></td><br>
-								<td style><%= directmessage.created_at.strftime('%Y/%m/%d') %></td>
-							</tr>
-						<% end %>
-					<% end %>
-				<% else %>
-					<h3 class="text-center">メッセージはまだありません</h3>
-				<% end %>
-			</table>
-
-				<%= form_for @directmessage do |f| %>
-					<%= f.text_area :directmessage, placeholder: "コメントをここに", size: 70 %>
-					<%= f.hidden_field :room_id, :value => @room.id %>
-					<%= f.submit "送信する", class: "btn btn-primary" %>
-				<% end %>
-			</div>
-		</div>
-	</div>
-</div>	
+<div class="container-fluid">
+  <div class="comment_area"> 
+    <div ng-repeat="data in hoge.chatdata">
+      <div class="row">
+        <div class="col-xs-3">
+          <%= render 'users/side_header' %>
+        </div>
+        <div class="col-xs-9">
+          <% if @directmessages.present? %>
+            <% @directmessages.each do |directmessage| %>
+              <% if directmessage.user_id == current_user.id %>
+              <!-- 自分のコメント -->
+                <span ng-if="data.type == 'chat'">
+                  <p class="right_balloon">
+                    <td style><%= directmessage.directmessage %></td><br>
+                    <td style><%= directmessage.created_at.strftime('%Y/%m/%d') %></td><br>
+                  </p><br>
+                </span>
+              <% else %>
+                <p class="left_balloon">
+                <!-- 他人のコメント -->
+                <td style>
+                  <%= attachment_image_tag(directmessage.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png", size:"50x50") %>
+                  <%= directmessage.user.name %>
+                </td>
+                <td style><%= directmessage.directmessage %></td><br>
+                <td style><%= directmessage.created_at.strftime('%Y/%m/%d') %></td>
+                </p><br>
+               <% end %>
+            <% end %>
+          <% else %>
+            <h3 class="text-center">メッセージはまだありません</h3>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-xs-9">
+      <%= form_for @directmessage do |f| %>
+        <%= f.text_area :directmessage, placeholder: "コメントを書く", class:"form-control input-sm" %>
+        <%= f.hidden_field :room_id, :value => @room.id %>
+        <%= f.submit "送信する", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

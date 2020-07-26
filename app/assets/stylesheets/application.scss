@@ -13,8 +13,8 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets"; 
- @import "bootstrap";     
+@import "bootstrap-sprockets";
+ @import "bootstrap";
 
  /* 全体 */
  * {
@@ -22,6 +22,7 @@
    padding: 0;
    box-sizing: border-box;
    color:#666;
+
    font-family: "ヒラギノ丸ゴ Pro W4","Nunito","Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", sans-serif;
    text-size: 20px;
  }
@@ -34,17 +35,23 @@
    margin-top: 100px;
    padding-top: 30px;
  }
- footer{
-   margin-top: 50px;
- }
+ p{
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.white-space{
+  white-space: pre ;
+}
 // ログイン中
 .login-row{
   margin-top: 50px;
 }
 /* ヘッダー */
  header{
-  height: 70px;
-   background-color: #99FFCC;
+  height: 100%;
+  width: 32%;
  }
  li, i{
   list-style: none;
@@ -68,29 +75,41 @@
     left:10px;
 
  }
-
- .nav-item{
-   height: 50px;
-   float: right;
+ .header-item{
    padding: 30px 10px 0 10px;
-   color:#FFFF00;
-   font-size:15px;
+   color:#00FF00;
+   font-size:18px;
    list-style: none;
+   display:block;
    &:hover{
     color:#B72025;
   }
  }
  .glyphicon-cutlery,.glyphicon-edit,.glyphicon-log-in,.glyphicon-home,.glyphicon-user,.glyphicon-book,.glyphicon-log-out{
-  color:#FFFF00;
-
+  color:#00FF00;
  }
-
+.header-border{
+  border-bottom: 1px solid #000000;
+}
+.header-color{
+  background-color: #00CCFF;
+  border-right: 1px solid #000000;
+  height: 100%;
+  width: 100%;
+}
+.tweet-padding{
+  padding: 10;
+}
  //aboutページ
  .about-text{
    padding: 30px 0px 30px 300px;
  }
 
-
+.user-edit{
+ display: inline-block;
+ margin: 0 auto;
+ text-align: left;
+}
  //マイページ編集画面
 .withdrawal_page_btn{
   position: relative;
@@ -98,16 +117,45 @@
   left: 200px;
 }
 
-.user_show_tweets{
-  
+.tweet-index{
+  border: 1px  #000000;
+  border-radius: 8px;
+  background-color: #FFCCFF;
+  margin-bottom: 10px;
 }
-
-//退会ページ
+.comment-other-than{
+  height: 50px;
+}
+.favorite-float{
+  float: right;
+  padding: 10px 10px 10px 5px;
+}
+.float-left{
+  float: left;
+}
+.genre-float{
+  float: left;
+  padding: 12px 10px 10px 5px;
+}
+.comment-float{
+  text-align: right;
+  padding: 10px 10px 10px 5px;
+}
+.index-comment{
+  padding: 5px;
+}
+.tweet-comment{
+  margin: 12px 10px 10px 5px;
+}
+.tweet-textarea{
+  resize: none;
+  width:90%;
+}
 .withdrawal_text{
   text-align:center;
   margin: 30px;
   position: relative;
-  right: 220px;
+  right: 300px;
 }
 body {
 	margin-top: 40px;
@@ -116,4 +164,225 @@ body {
 //tweet
 .tweet_index{
  color: red;
+}
+
+/*******************************
+* left
+********************************/
+.left_balloon {
+    position: relative;
+    background: #fff;
+    border: 1px solid #777;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-right: 20%;
+    clear: both;
+    max-width: 500px;
+    float: left;
+}
+.left_balloon:after,
+.left_balloon:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.left_balloon:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-width: 7px;
+    margin-top: -7px;
+}
+.left_balloon:before {
+    border-color: rgba(0, 0, 0, 0);
+    border-right-color: #000;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+/*******************************
+* right
+********************************/
+.right_balloon {
+    position: relative;
+    background: #85e249;
+    border: 1px solid #777;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-left: 20%;
+    clear: both;
+    max-width: 500px;
+    float: right;
+}
+.right_balloon:after,
+.right_balloon:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.right_balloon:after {
+    border-color: rgba(133, 226, 73, 0);
+    border-left-color: #85e249;
+    border-width: 7px;
+    margin-top: -7px;
+}
+.right_balloon:before {
+    border-color: rgba(119, 119, 119, 0);
+    border-left-color: #777;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+/*******************************
+* clear
+********************************/
+.clear_balloon{
+  clear: both;
+}
+.comment_area {
+    margin-bottom: 20px;
+}
+/*******************************
+* 改行
+********************************/
+.new_line {
+    white-space: pre-line;
+}
+
+
+/*=== 1. General Structure ===*/
+html,
+body {
+  background: #efefef;
+  padding: 10px;
+  font-family: 'Varela Round';
+}
+/*=== 2. Anchor Link ===*/
+a {
+  color: black;
+  transition: all ease-in-out 200ms;
+}
+a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+/*=== 3. Text Outside the Box ===*/
+.etc-login-form {
+  color: #919191;
+  padding: 10px 20px;
+}
+.etc-login-form p {
+  margin-bottom: 5px;
+}
+/*=== 4. Main Form ===*/
+.login-form-1 {
+  max-width: 300px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.main-login-form {
+  position: relative;
+}
+.login-form-1 .form-control {
+  border: 0;
+  box-shadow: 0 0 0;
+  border-radius: 0;
+  background: transparent;
+  color: #555555;
+  padding: 7px 0;
+  font-weight: bold;
+  height:auto;
+}
+.login-form-1 .form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+.login-form-1 .form-control:-moz-placeholder,
+.login-form-1 .form-control::-moz-placeholder,
+.login-form-1 .form-control:-ms-input-placeholder {
+  color: #999999;
+}
+.login-form-1 .form-group {
+  margin-bottom: 0;
+  border-bottom: 2px solid #efefef;
+  padding-right: 20px;
+  position: relative;
+}
+.login-form-1 .form-group:last-child {
+  border-bottom: 0;
+}
+.login-group {
+  background: #ffffff;
+  color: #999999;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+.login-group-checkbox {
+  padding: 5px 0;
+}
+/*=== 5. Login Button ===*/
+.login-form-1 .login-button {
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  background: #ffffff;
+  color: #999999;
+  padding: 11px 0;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  border: 5px solid #efefef;
+  border-radius: 50%;
+  transition: all ease-in-out 500ms;
+}
+.login-form-1 .login-button:hover {
+  color: #555555;
+  transform: rotate(450deg);
+}
+.login-form-1 .login-button.clicked {
+  color: #555555;
+}
+.login-form-1 .login-button.clicked:hover {
+  transform: none;
+}
+.login-form-1 .login-button.clicked.success {
+  color: #2ecc71;
+}
+.login-form-1 .login-button.clicked.error {
+  color: #e74c3c;
+}
+.logo {
+  padding: 15px 0;
+  font-size: 25px;
+  color: #aaaaaa;
+  font-weight: bold;
+}
+.home-color{
+  width: 100%;
+  height: 100%;
+  background-image: url(sky_00165.jpg);
+  background-size: cover;
+}
+
+.tweet-index-true{
+  border: 1px  #000000;
+  border-radius: 8px;
+  background-color: #EEEEEE;
+  margin-bottom: 10px;
+}
+.tweet-index-false{
+  border: 1px  #000000;
+  border-radius: 8px;
+  background-color: #FFFF66;
+  margin-bottom: 10px;
 }

@@ -1,54 +1,54 @@
-<div class = "body" style>
-  <div class = "container">
-    <div class="row" style>
-      <div class="col-xs-3">
-        <%#= render 'users/side_header' %>
-      </div>
-    <div class="col-xs-9" style>
-        <div class = "introduction">
-          <h1><%= @user.name %>さんのマイページ</h1>
-          <%= attachment_image_tag(@user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png",size:"50x50") %>&ensp;
-
-          <%= @user.introduction %>
+<div class="container-fluid">
+  <div class="comment_area">
+    <div ng-repeat="data in hoge.chatdata">
+      <div class="row">
+        <div class="col-xs-3">
+          <%= render 'users/side_header' %>
         </div>
+        <div class="col-xs-9" style>
+          <div class = "introduction">
+            <h1><%= @user.name %>さんのマイページ</h1>
+              <%= attachment_image_tag(@user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png",size:"50x50") %>&ensp;
 
-        <% if current_user == @user %>
-        	<%= link_to "プロフィール編集", edit_user_path(current_user) %>
-        <% else %>
-        	 <% if @user.followers.include?(current_user) %>
-              <p><%= link_to 'フォローを外す', user_relationships_path(current_user.id, follower_id: @user.id), method: :delete, class: "btn btn-danger" %></p>
-           <% else %>
-              <p><%= link_to 'フォローする', user_relationships_path(current_user.id, follower_id: @user.id), method: :post, class: "btn btn-primary" %></p>
-           <% end %>
-        <% end %>
+              <%= @user.introduction %>
+          </div><br>
 
-         <!-- DMルームへの記述　-->
-        <% unless @user.id == current_user.id %>
-          <% if @isroom == true %>
-            <%= link_to "DMルームへ", room_path(@roomid), class: "btn btn-primary" %>
+          <% if current_user == @user %>
+            <%= link_to "プロフィール編集", edit_user_path(current_user), class: "btn btn-primary" %>
           <% else %>
-            <%= form_for @room do |f| %>
-              <%= fields_for @entry do |entry| %>
-                <%= entry.hidden_field :user_id, :value=> @user.id %>
-              <% end %>
-              <%= f.submit "DMルームへ", class: "btn btn-primary" %>
+            <% if @user.followers.include?(current_user) %>
+              <p><%= link_to 'フォローを外す', user_relationships_path(current_user.id, follower_id: @user.id), method: :delete, class: "btn btn-danger" %></p>
+            <% else %>
+              <p><%= link_to 'フォローする', user_relationships_path(current_user.id, follower_id: @user.id), method: :post, class: "btn btn-primary" %></p>
             <% end %>
           <% end %>
-        <% end %> 
-        <br>
-        <br>
 
-        <table class="table">
-        	<% @mytweet.each do |tweet| %>
-        	<tr class = "user_show_tweets">
-        		<td>
-        			<%= attachment_image_tag(tweet.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png",size:"50x50") %>
-              <%= @user.name %>&ensp;
-        			<%= link_to tweet.tweet, tweet_path(tweet.id) %>
-        			<% end %>
-        		</td>
-        	</tr>
-        </table>
+             <!-- DMルームへの記述　-->
+          <% unless @user.id == current_user.id %>
+            <% if @isroom == true %>
+              <%= link_to "DMルームへ", room_path(@roomid), class: "btn btn-primary" %>
+            <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @entry do |entry| %>
+                  <%= entry.hidden_field :user_id, :value=> @user.id %>
+                <% end %>
+                  <%= f.submit "DMルームへ", class: "btn btn-primary" %>
+              <% end %>
+            <% end %>
+          <% end %><br><br>
+
+          <table class="table">
+          	<% @tweet.each do |tweet| %>
+          	  <tr class = "user_show_tweets">
+            		<td>
+            			<%= attachment_image_tag(tweet.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png",size:"50x50") %>
+                  <%= @user.name %>&ensp;
+            			<%= link_to tweet.tweet, tweet_path(tweet.id) %>
+            		</td>
+          	  </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
     </div>
   </div>

@@ -8,10 +8,9 @@ Rails.application.routes.draw do
     get :follows, on: :member
     get :followers, on: :member
     get "followings_tweet" => "tweets#followings_tweet"
-    get "followers_tweet" => "tweets#followiner_tweet"
+    get "followers_tweet" => "tweets#followers_tweet"
   end
 
-  
    post "new" => "tweets#new"
    resources :tweets do
     resource :favorites, only: [:create, :destroy]
@@ -21,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-   resources :directmessages, only: [:create, :destroy]
+   resources :directmessages, only: [:create]
    resources :rooms, only: [:create, :show]
    resources :notifications, only: [:index] do
     delete "destroy_all"

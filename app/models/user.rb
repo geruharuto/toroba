@@ -24,22 +24,25 @@ class User < ApplicationRecord
   # 中間テーブルを介して「following」モデルのUser(フォローする側)を集めることを「followers」と定義
   has_many :followers, through: :passive_relationships, source: :following
 
-  #has_many :passive_notifications, class_name: "Notification", foreign_key: "follower_id", dependent: :destroy
+  #フォローされた時の通知
+  def create_notification_follow(current_user)
+    temp = Notification.where(["active_id = ? and passive_id = ? and action = ?", current_user.id, self.id,"follow"])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        active_id: current_user.id,
+        passive_id: self.id,
+        action: "follow"
+        )
+      notification.save if notification.valid?
+    end
+  end
 
 
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
- #current_userが誰かにフォローされた時に通知
-  def create_notification_follow!(currentuser)
-    temp = Notification.wher(["active_id = ? and passive_id = ? and action = ?" ,current_user.id, "follow"])
-    if temp.blank?
-      notification = current_user.acitive_notifications.new(
-        active_id: id,
-        action: "follow"
-        )
-      notification.save if notification.valid?
-    end
+  def unchecked_notifications
+    passive_notifications.where(checked: false)
   end
 
   validates :name, length: {maximum: 20, minimum: 2}

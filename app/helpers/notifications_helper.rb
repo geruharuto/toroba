@@ -1,18 +1,19 @@
 module NotificationsHelper
 	def notification_form(notification)
-      @active = notification.active
+      @active = User.find(notification.active_id)
       @comment = nil
-      tweet = link_to 'あなたの投稿', users_tweet_path(notification),
-      @visiter_comment = notification.comment_id
-      #notification.actionがfollowかlikeかcommentか
-      case notification.action
-        when "follow" then
-          tag.a(notification.active.name, href:users_user_path(@active) )+"があなたをフォローしました"
-        when "like" then
-          tag.a(notification.active.name, href:users_user_path(@active) )+"が"+tag.a('あなたの投稿', href:users_item_path(notification.item_id), style:"font-weight: bold;")+"にいいねしました"
-        when "comment" then
-            @comment = Comment.find_by(id: @active_comment)&.content
-            tag.a(@active.name, href:users_user_path(@activ) )+"が"+tag.a('あなたの投稿', href:users_tweet_path(notification.tweet_id), style:"font-weight: bold;")+"にコメントしました"
+      @passive_comment = notification.comment_id
+
+      case notification.action.to_sym
+        when :follow then
+          tag.a(@active.name, href: user_path(@active) )+"があなたをフォローしました"
+        when :favorite then
+          tag.a(@active.name, href: user_path(@active) )+"が"+tag.a('あなたの投稿', href: tweet_path(notification.tweet_id), style:"font-weight: bold;")+"にいいねしました"
+        when :comment then
+          @comment = Comment.find_by(id: @active_comment)&.content
+          tag.a(@active.name, href:user_path(@active) )+"が"+tag.a('あなたの投稿', href: tweet_path(notification.tweet_id), style:"font-weight: bold;")+"にコメントしました"
+        when :directmessage then
+          tag.a(@active.name, href: user_path(@active) )+"が"+tag.a('あなたにDM', href: room_path(notification.room_id), style:"font-weight: bold;")+"を送りました"
       end
-    end
+  end
 end
