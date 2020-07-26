@@ -1,46 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html class = "home-color">
   <head>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <header>
-      <nav>
-        <ul>
-          <% if user_signed_in? %>
-            <li><%= link_to "Toroba!!", tweets_path %></li>
-            <li>
-              <%= attachment_image_tag(current_user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png") %>
-              <%= link_to current_user.name, user_path(current_user) %>
-            </li>
-            <li><%#= link_to current_user.followings.count, follows_user_path(current_user) %></li>
-            <li><%#= link_to current_user.followers.count, followers_user_path(current_user) %></li>
-            <li><%= link_to "活動履歴", activity_path(current_user) %></li>
-            <li><%= link_to "つぶやく", new_tweet_path %></li>
-            <li><%= link_to "通知一覧", notifications_path %></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-
-          <% else %>
-            <li><%= link_to "Toroba!!", new_user_session_path %></li>
-            <li><%= link_to "ログイン", new_user_session_path %></li>
-            <li><%= link_to "新規登録", new_user_registration_path %></li>
-          <% end %>    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-        </ul>
-
-      </nav>
-    </header>
     <main>
-      <div class="container main-container">
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>">
-            <%= message %>
-          </div>
-        <% end %>  
-        <%# 各ページ本体 %>
+      <%# 各ページ本体 %>
         <%= yield %>
       </div>
     </main>
@@ -48,3 +17,4 @@
 
     </footer>
   </body>
+</html>

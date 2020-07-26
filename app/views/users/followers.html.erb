@@ -1,2 +1,36 @@
-<h1>Users#followers</h1>
-<p>Find me in app/views/users/followers.html.erb</p>
+<div class="container-fluid">
+	<div class="comment_area">
+    	<div ng-repeat="data in hoge.chatdata">
+     		<div class="row">
+				<div class="col-xs-3">
+					<%= render 'users/side_header' %>
+				</div>
+				<div class="col-xs-9" style>
+					<%#= link_to "ツイート 一覧", user_followers_tweet_path(@users), class: "btn btn-primary" %>
+					<table class="table">
+						<% @users.each do |user| %>
+						   <div class="contents row" >
+							<tr>
+								<td style>
+									<%= link_to(user) do %>
+										<%= attachment_image_tag(user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png", size:'50x50') %>
+										<%= user.name %>
+									<% end %>
+								</td>
+								<td style><%= user.introduction %></td>
+								<td style>
+								    <% if user.followers.include?(current_user) %>
+										<p><%= link_to 'フォローを外す', user_relationships_path(current_user.id, follower_id: @user.id), method: :delete, class: "btn btn-danger" %></p>
+									<% else %>
+										<p><%= link_to 'フォローする', user_relationships_path(current_user.id, follower_id: @user.id), method: :post, class: "btn btn-primary" %></p>
+									<% end %>
+								</td>
+							</tr>
+							</div>
+						<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

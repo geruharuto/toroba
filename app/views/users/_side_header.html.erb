@@ -1,0 +1,34 @@
+<ul class= "header-color">
+  <li><%= link_to "Toroba!!", tweets_path, class:"nav header-logo" %></li><br>
+    <li> <%= link_to user_path(current_user), class:"header-item header-border" do %>
+         <%= attachment_image_tag(current_user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "figure_standing.png", size:'50x50' ) %><br><br>
+          <%= current_user.name %>
+          <% end %><br><br>
+    </li>
+    <li><%= link_to user_followings_tweet_path(current_user), class:"header-item" do %>
+        <i class="glyphicon glyphicon-home home"></i>&emsp;
+        <%= current_user.followings.count %>
+        <% end %>
+    </li>
+    <li><%= link_to user_followers_tweet_path(current_user), class:"header-item" do %>
+       <i class="glyphicon glyphicon-home home"></i>&emsp;
+        <%= current_user.followers.count %>
+        <% end %>
+    </li>
+    <li><%= link_to new_tweet_path, class:"header-item" do %>
+        <i class="glyphicon glyphicon-home home"></i>&emsp;つぶやく
+        <% end %>
+    </li>
+    <li>
+        <% if current_user.unchecked_notifications.any? %>
+            <i class="fa fa-circle" style="color: gold;"></i>
+        <% end %>
+        <%= link_to notifications_path, class:"header-item header-border" do %>
+        <i class="glyphicon glyphicon-home home"></i>&emsp;通知一覧
+        <% end %>
+    </li>
+    <li><%= link_to destroy_user_session_path, method: :delete, class:"header-item" do %>
+        <i class="glyphicon glyphicon-home home"></i>&emsp;ログアウト
+        <% end %>
+    </li>
+</ul>

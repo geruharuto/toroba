@@ -1,24 +1,38 @@
-<h1>プロフィール編集</h1>
+<div class="container-fluid">
+	<div class="comment_area">
+    	<div ng-repeat="data in hoge.chatdata">
+      		<div class="row">
+				<div class="col-xs-3">
+					<%= render "users/side_header" %>
+				</div>
+				<div class="col-xs-9 text-center">
+					<div class = "user-edit">
+						<h1>プロフィール編集</h1>
+						<%= form_for(@user) do |f| %>
 
-<%= form_for(@user) do |f| %>
+							<def class = "field">
+								<%= f.label :ニックネーム %><br />
+								<%= f.text_field :name, autofocus: true, :size=>"90x15" %>
+							<div class="field">
+								<%= f.label :image %>
+								<%= f.attachment_field :profile_image %>
+							</div>
+							</def>
+							<div class="field">
+								<%= f.label :メールアドレス %><br />
+							    <%= f.email_field :email, autofocus: true, :size=>"90x15" %>
+							</div>
+							<div class="field">
+								<%= f.label :自己紹介 %><br />
+								<%= f.text_area :introduction, placeholder: "自己紹介を書きましょう！", :size=>"90%x15" %>
+							</div>
+								<%= f.submit "編集を保存する", class: "btn btn-primary" %>
+						<% end %><br>
 
-	<def class = "field">
-		<%= f.label :ニックネーム %><br />
-		<%= f.text_field :name, autofocus: true, autocomplete: "email" %>
-	<div class="field">
-		<%= f.label :image %>
-		<%= f.attachment_field :profile_image %>
+						<%= link_to "退会する", user_withdrawal_path, class: "btn btn-danger" %>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	</def>
-	<div class="field">
-		<%= f.label :メールアドレス %><br />
-	    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-	</div>
-	<div class="field">
-		<%= f.label :自己紹介 %><br />
-		<%= f.text_area :introduction %>
-	</div>
-		<%= f.submit "編集を保存する", class: "btn btn-primary" %>
-<% end %>
-
-<%= link_to "退会する", user_withdrawal_path %>
+</div>
