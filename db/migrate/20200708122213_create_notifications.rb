@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CreateNotifications < ActiveRecord::Migration[5.2]
-   def change
+  def change
     create_table :notifications do |t|
       t.references :active, null: false, type: :bigint, foreign_key: { to_table: :users }
       t.references :passive, null: false, type: :bigint, foreign_key: { to_table: :users }
@@ -11,5 +13,5 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     add_reference :notifications, :comment, foreign_key: true
-  end
+ end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CreateTweets < ActiveRecord::Migration[5.2]
-   def change
+  def change
     create_table :tweets do |t|
       t.text :tweet, null: false
       t.string :listener, null: false
@@ -12,5 +14,5 @@ class CreateTweets < ActiveRecord::Migration[5.2]
     add_reference :comments, :tweet, foreign_key: true
     add_reference :favorites, :tweet, foreign_key: true
     add_reference :notifications, :tweet, foreign_key: true
-  end
+ end
 end

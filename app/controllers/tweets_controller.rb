@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TweetsController < ApplicationController
-   before_action :authenticate_user!
+  before_action :authenticate_user!
   def index
     @tweets = Tweet.all
   end
@@ -19,11 +21,11 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
     if @tweet.save
-      flash[:success] = "投稿しました"
-      redirect_to tweet_path(@tweet) and return
+      flash[:success] = '投稿しました'
+      redirect_to(tweet_path(@tweet)) && return
     else
       flash[:danger] = '投稿に失敗しました'
-      render :new and return
+      render(:new) && return
     end
   end
 
@@ -34,17 +36,17 @@ class TweetsController < ApplicationController
   def update
     @tweet = Tweet.find(params[:id])
     if @tweet.update(tweet_params)
-      flash[:success] = "編集を保存しました"
+      flash[:success] = '編集を保存しました'
       redirect_to tweet_path(@tweet)
     else
-      flash[:success] = "編集を保存できませんでした"
+      flash[:success] = '編集を保存できませんでした'
       render :edit
     end
   end
 
   def destroy
     tweet = Tweet.find(params[:id])
-    tweet.destroy
+    tweet.destroy!
     redirect_to user_path(current_user)
   end
 

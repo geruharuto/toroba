@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   def create
-  	tweet = Tweet.find(params[:tweet_id])
+    tweet = Tweet.find(params[:tweet_id])
     favorite = current_user.favorites.new(tweet_id: tweet.id)
-    favorite.save
+    favorite.save!
     tweet.create_notification_favorite!(current_user)
     redirect_to request.referer
   end
@@ -10,8 +12,7 @@ class FavoritesController < ApplicationController
   def destroy
     tweet = Tweet.find(params[:tweet_id])
     favorite = current_user.favorites.find_by(tweet_id: tweet.id)
-    favorite.destroy
+    favorite.destroy!
     redirect_to request.referer
   end
-
 end
