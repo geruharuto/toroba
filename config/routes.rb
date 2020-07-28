@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   get 'user/withdrawal' => 'users#withdrawal'
   resources :users, only: %i(show edit update destroy) do
     resource :relationships, only: %i(create destroy)
-    get :follows, params: { on: :member }
-    get :followers, params: { on: :member }
+    #get :follows, params: { on: :member }
+    get 'follows' => 'users#follows', as: 'follows'
+    get 'followers' => 'users#followers', as: 'followers'
     get 'followings_tweet' => 'tweets#followings_tweet'
     get 'followers_tweet' => 'tweets#followers_tweet'
   end
