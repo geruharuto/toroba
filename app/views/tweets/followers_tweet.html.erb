@@ -7,7 +7,7 @@
 				</div>
 				<div class="col-xs-9">
 					<table>
-						<%= link_to "フォロワー 一覧", followers_user_path(current_user), class: "btn btn-primary" %>
+						<%= link_to "フォロワー 一覧", user_followers_path(current_user), class: "btn btn-primary" %>
 						<table>
 							<% @tweets.each do |tweet| %>
 							    <div class = "tweet-index">
