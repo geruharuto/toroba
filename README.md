@@ -1,24 +1,25 @@
-# README
+# Toroba
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
 
-Things you may want to cover:
+人に相談しにくい悩みや日頃の愚痴などを吐露するための場を提供します。
+通常のチャットサイト感覚で吐露したい概要などを書き込み、他のユーザーの反応次第でzoomを利用して実際に口にして人に聞いてもらいましょう。
+きっとスッキリして明日を迎えられるでしょう。
 
-* Ruby version
+## 機能
 
-* System dependencies
+　こちらを参照して下さい。
+（https://docs.google.com/spreadsheets/d/1kguoHCFBu_QRmQS3glDPv8UeVcZVvca1qeB0FPz2-Ag/edit#gid=0）
 
-* Configuration
 
-* Database creation
+## 使い方
 
-* Database initialization
+　アカウントを作成し、通常のSNSのように投稿やコメント、フォローなどの利用をしてください。
+　ダイレクトメッセージを送り、その時にzoomで立てた部屋のURLを張り付け、言いたいことを吐露しましょう。
 
-* How to run the test suite
+## バージョン
+　Rails 5.2.4.3
+　ruby 2.5.7
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 作者
+　伊藤堅亮
