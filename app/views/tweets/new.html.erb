@@ -1,30 +1,28 @@
 <div class="container-fluid">
 	<div class="comment_area">
-    	<div ng-repeat="data in hoge.chatdata">
-      		<div class="row">
+  		<div class="row">
 			<div class="col-xs-3">
 				<%= render "users/side_header" %>
 			</div>
-				<div class="col-xs-9 container text-center">
-					<table>
-						<%= form_for(@tweet) do |f| %>
-							<div class="field">
-								<%= f.label :投稿内容 %><br />
-								<%= f.text_area :tweet, placeholder: "内容をここに", :size=>"150x15", class:"tweet-textarea input-sm" %><br><br>
-							</div>
-							<div>
-								<a>聞き手へ：　</a>
-								<%= f.select :listener, ["無言、聞き専", "うなづき、あいづち", "対話、会話", "アドバイス、意見が欲しい", "その他"], {include_blank: '選択ボックス'}, class: '' %>&ensp;
-							</div><br>
-							<div>
-								<a>ジャンル:　</a>
-								<%= f.select :genre, ["悩み（軽)", "悩み（重い)", "愚痴", "整理するために話をしたい", "その他"], {include_blank: '選択ボックス'}, class: '' %>
-							</div><br><br>
+			<div class="col-xs-9 container text-center">
+				<table>
+					<%= form_for(@tweet) do |f| %>
+						<div class="field">
+							<%= f.label :投稿内容 %><br />
+							<%= f.text_area :tweet, placeholder: "内容をここに", :size=>"150x15", class:"tweet-textarea input-sm" %><br><br>
+						</div>
+						<div>
+							<a>聞き手へ：　</a>
+							<%= f.select :listener, ["無言、聞き専", "うなづき、あいづち", "対話、会話", "アドバイス、意見が欲しい", "その他"], {include_blank: '選択ボックス'}, class: '' %>&ensp;
+						</div><br>
+						<div>
+							<a>ジャンル:　</a>
+							<%= f.select :genre, ["悩み（軽)", "悩み（重い)", "愚痴", "整理するために話をしたい", "その他"], {include_blank: '選択ボックス'}, class: '' %>
+						</div><br><br>
 
-							<%= f.submit "編集を保存する", class: "btn btn-success" %>
-						<% end %>
-					</table>
-				</div>
+						<%= f.submit "編集を保存する", class: "btn btn-success" %>
+					<% end %>
+				</table>
 			</div>
 		</div>
 	</div>

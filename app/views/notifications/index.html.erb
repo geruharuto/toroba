@@ -1,22 +1,20 @@
 <div class="container-fluid">
 	<div class="comment_area">
-    	<div ng-repeat="data in hoge.chatdata">
-      		<div class="row">
-			<div class="col-xs-3">
-				<%= render "users/side_header" %>
-			</div>
-			<div class="col-xs-9">
-				<table>
-				 	<% notifications = @notifications.where.not(active_id: current_user.id) %>
-				 	<% if notifications.exists? %>
-				  		<%= render "notification" %>
-				 	<% else %>
-				  		<h2 class = "text-center" >通知はありません</h2>
-				  	<% end %>
-				</table>
-			</div>
+  		<div class="row">
+		<div class="col-xs-3">
+			<%= render "users/side_header" %>
+		</div>
+		<div class="col-xs-9">
+			<table>
+			 	<% notifications = @notifications.where.not(active_id: current_user.id) %>
+			 	<% if notifications.exists? %>
+			  		<%= render "notification" %>
+			 	<% else %>
+			  		<h2 class = "text-center" >通知はありません</h2>
+			  	<% end %>
+			</table>
+		</div>
 		</div>
 	</div>
-</div>
 </div>
 

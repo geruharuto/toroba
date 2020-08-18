@@ -1,0 +1,11 @@
+<% if tweet.favorited_by?(current_user) %>
+	<%= link_to tweet_favorites_path(tweet), method: :delete, remote: true do %>
+		<i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
+		<%= tweet.favorites.count %>&ensp;
+	<% end %>
+<% else %>
+	<%= link_to tweet_favorites_path(tweet), method: :post,remote: true do %>
+		<i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
+		<%= tweet.favorites.count %>&ensp;
+	<% end %>
+<% end %>

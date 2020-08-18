@@ -92,11 +92,12 @@
   border-bottom: 1px solid #000000;
 }
 .header-color{
-  background-color: #00CCFF;
+  background-color: #FFFFCC;
   border-right: 1px solid #000000;
   height: 100%;
   width: 100%;
 }
+
 .tweet-padding{
   padding: 10;
 }
@@ -120,7 +121,7 @@
 .tweet-index{
   border: 1px  #000000;
   border-radius: 8px;
-  background-color: #FFCCFF;
+  background-color: #66FF66 ;
   margin-bottom: 10px;
 }
 .comment-other-than{
@@ -159,6 +160,7 @@
 }
 body {
 	margin-top: 40px;
+  background-color: #99FF99;
 }
 
 //tweet
@@ -264,7 +266,6 @@ body {
 /*=== 1. General Structure ===*/
 html,
 body {
-  background: #efefef;
   padding: 10px;
   font-family: 'Varela Round';
 }
@@ -370,7 +371,7 @@ a:hover {
 .home-color{
   width: 100%;
   height: 100%;
-  background-image: url(sky_00165.jpg);
+  background-color: #99FF99;
   background-size: cover;
 }
 
